@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Create Listing</title>
+        
+        <!--CSS file-->
+        <link rel="stylesheet" type="text/css" href="static/css/styles.css">
+
+
+</head>
+<body>
+    <h1>Create a New Listing</h1>
+    <form method="post" action="{{ url_for('create_listing') }}" enctype="multipart/form-data">
+        <label for="title">Title:</label>
+        <input type="text" name="title" required><br>
+
+        <label for="price">Price:</label>
+        <input type="text" name="price" required><br>
+
+        <label for="description">Description:</label>
+        <textarea name="description" required></textarea><br>
+
+        <label for="num_photos">Number of Photos Per Listing:  </label>
+        <input type="number" name="num_photos" step="1" required><br>
+
+        <label for="colors">Color Options (comma-separated): </label>
+        <input type="text" name="colors"><br>
+
+        <label for="sizes">Size Options (comma-separated): </label>
+        <input type="text" name="sizes"><br>
+
+        <!-- File upload input for photos (multiple) -->
+        <label for="photos">Upload Photos:</label>
+        <input type="file" name="photos" accept="image/*" multiple id="file-input"><br>
+
+        <!-- Display selected images -->
+        <div id="selected-images" class="sortable-images"></div>
+
+        <!-- ... Asks the user for CSV file ... -->
+        <label for="title_file">Upload CSV file with Titles:</label>
+        <input type="file" name="title_file" accept=".csv"><br>
+        
+        <!-- Add the progress bar -->
+        <progress id="progress-bar" value="0" max="100"></progress>
+
+        <!--Create listing button-->
+        <button type="submit">Create Listing</button>
+    </form>
+    <a href="{{ url_for('index') }}">Back to Listings</a>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.3/socket.io.js"></script>
+    <script src="static/js/script.js"></script>
+
+</body>
+</html>

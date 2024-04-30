@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Listings</title>
+</head>
+<body>
+    <h1>Product Listings</h1>
+    <ul>
+        {% for product in products %}
+            <li>
+                <h2>{{ product.name }}</h2>
+                <p>Price: ${{ product.price }}</p>
+                <p>Description: {{ product.description }}</p>
+                <!-- Display the image -->
+                {% for image in product.images %}
+                    <img src="{{ url_for('static', filename=image) }}" alt="{{ product.name }} Image" style="max-width: 200px;">
+                {% endfor %}
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('create_listing') }}">Create a New Listing</a>
+</body>
+</html>
